@@ -14,7 +14,7 @@ async function bootstrap() {
     .setTitle('Movie Booking API')
     .setDescription('API pour l’application de réservation de films')
     .setVersion('1.0')
-    .addBearerAuth() // Pour les endpoints protégés par JWT
+    .addBearerAuth() // Pour spécifier l’authentification par token
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
