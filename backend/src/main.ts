@@ -9,23 +9,13 @@ async function bootstrap() {
   // Active le CORS pour autoriser les requêtes provenant d'autres origines
   app.enableCors();
 
-  // Activation de la validation globale pour valider automatiquement les DTOs
   app.useGlobalPipes(new ValidationPipe());
 
-  // Configuration de Swagger avec une authentification Bearer explicite
   const config = new DocumentBuilder()
     .setTitle('Movie Booking API')
     .setDescription('API pour l’application de réservation de films')
     .setVersion('1.0')
-    // Définition d'un schéma d'authentification Bearer (JWT)
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-      },
-      'access-token', // nom de la clé d'authentification (sera utilisé dans les décorateurs @ApiBearerAuth())
-    )
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
